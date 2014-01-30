@@ -185,6 +185,17 @@ class MirrorQuickStart < Sinatra::Base
     redirect to '/'
   end
 
+  post "/insert-html" do
+    item = {}
+    item[:html] = Pathname.new("views/card.html").read
+    item[:menuItems] = []
+    item[:menuItems] << { action: "DELETE" }
+    @mirror.insert_timeline_item(item, nil, params[:contentType])
+
+    session[:message] = "Inserted a HTML"
+    redirect to "/"
+  end
+
   ##
   # Called when the Delete button next to a timeline item is clicked.
   post '/delete-item' do

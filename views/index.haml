@@ -44,6 +44,11 @@
       %button.btn.btn-block(type="submit")
         Insert a card to all users
 
+    %form(method="post" action="/insert-html")
+      %input(type="hidden" name="contentType" value="text/html")
+      %button.btn.btn-block(type="submit")
+        Insert a HTML
+
   .span4
     %h2 Contacts
     %p
