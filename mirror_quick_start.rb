@@ -244,6 +244,11 @@ class MirrorQuickStart < Sinatra::Base
   post '/insert-subscription' do
     callback = "#{base_url}/notify-callback"
 
+    # In development, use proxy server that forwards notifications to a non-SSL callback URL.
+    if ENV["RACK_ENV"] != "production"
+      callback = "https://mirrornotifications.appspot.com/forward?url=#{callback}"
+    end
+
     begin
       @mirror.insert_subscription(
         session[:user_id], params[:subscriptionId], callback)
