@@ -46,8 +46,11 @@
 
     %form(method="post" action="/insert-html")
       %input(type="hidden" name="contentType" value="text/html")
-      %button.btn.btn-block(type="submit")
-        Insert a HTML
+      %button.btn.btn-block(type="submit") Insert a HTML
+
+    %form(method="post" action="/insert-bundled-item")
+      %textarea.span4(name="message") Bundled message
+      %button.btn.btn-block(type="submit") Insert a bundled card
 
   .span4
     %h2 Contacts

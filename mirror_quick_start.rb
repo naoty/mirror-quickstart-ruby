@@ -196,6 +196,18 @@ class MirrorQuickStart < Sinatra::Base
     redirect to "/"
   end
 
+  post "/insert-bundled-item" do
+    item = {}
+    item[:bundleId] = "sample"
+    item[:text] = params[:message]
+    item[:menuItems] = []
+    item[:menuItems] << { action: "DELETE" }
+    @mirror.insert_timeline_item(item)
+
+    session[:message] = "Inserted a HTML"
+    redirect to "/"
+  end
+
   ##
   # Called when the Delete button next to a timeline item is clicked.
   post '/delete-item' do
